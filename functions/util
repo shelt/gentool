@@ -1,0 +1,30 @@
+#!/bin/bash
+
+### STEPPING ###
+# A step is just a function with the following qualities:
+# 1. Performs a specific "step" of the installation process
+# 2. Must not fail. Any errors that occur within the function
+#    will cause the entire program to halt.
+
+step()
+{
+    (set -e; STEPTRACE+=">$1"; "$@") || fatal "step failed: main${STEPTRACE}>$1"
+}
+
+
+### PRINTING ###
+tell()
+{
+    echo "gentool:" "$@" >&3
+}
+
+error()
+{
+    echo "gentool:" "$@" >&4
+}
+
+fatal()
+{
+    error "$@"
+    exit
+}
