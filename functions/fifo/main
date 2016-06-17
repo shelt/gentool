@@ -1,0 +1,20 @@
+#!/bin/bash
+
+install_fifo()
+{
+    step config
+    step partition # Also mounts physical partition
+    step create_lvm
+    step format_fs
+    step install_base
+    step mount_fs
+    step do_chroot
+    step umount_fs
+}
+
+do_chroot()
+{
+    cp /gentool.log /mnt/gentool.fifo.log
+    cp "$0" /mnt/`basename "$0"`
+    chroot /mnt ./`basename "$0"` chroot #TODO userspec
+}

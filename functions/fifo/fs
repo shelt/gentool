@@ -1,0 +1,18 @@
+#!/bin/bash
+
+
+# Also mounts physical partition
+partition()
+{
+    
+}
+
+create_lvm()
+{
+    
+}
+
+format_fs()
+{
+    
+}
